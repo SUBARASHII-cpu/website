@@ -12,6 +12,6 @@ document
     setTimeout(() => heart.remove(), 1000);
 
     const audio = document.getElementById("click-sound");
-    audio.volume = 0.1;
+    audio.volume = 1;
     audio.play();
   });
