@@ -1,5 +1,3 @@
-let hasPlayed = false;
-
 document
   .getElementById("clickable-image")
   .addEventListener("click", function (e) {
@@ -13,10 +11,7 @@ document
 
     setTimeout(() => heart.remove(), 1000);
 
-    if (!hasPlayed) {
-      const audio = document.getElementById("click-sound");
-      audio.volume = 0.1;
-      audio.play();
-      hasPlayed = true;
-    }
+    const audio = document.getElementById("click-sound");
+    audio.volume = 0.1;
+    audio.play();
   });
