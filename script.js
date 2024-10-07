@@ -1,22 +1,20 @@
-let hasPlayed = false;
+document.addEventListener("DOMContentLoaded", function () {
+  const clickableImage = document.getElementById("clickable-image");
+  const clickSound = document.getElementById("click-sound");
+  const cpuInfo = document.getElementById("cpu-info");
+  const fpsInfo = document.getElementById("fps-info");
 
-document
-  .getElementById("clickable-image")
-  .addEventListener("click", function (e) {
-    const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.textContent = "❤️";
-    document.body.appendChild(heart);
-
-    heart.style.left = `${e.clientX - 20}px`;
-    heart.style.top = `${e.clientY - 20}px`;
-
-    setTimeout(() => heart.remove(), 1000);
-
-    if (!hasPlayed) {
-      const audio = document.getElementById("click-sound");
-      audio.volume = 0.1;
-      audio.play();
-      hasPlayed = true;
-    }
+  clickableImage.addEventListener("click", function () {
+      clickSound.play();
+      createHeart(clickableImage);
   });
+
+  function createHeart(element) {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerHTML = "❤️";
+      document.body.appendChild(heart);
+
+      const rect = element.getBoundingClientRect();
+      heart.style.left = `${rect.left + rect.width / 2}px`;
+      heart.style.top = `${rect

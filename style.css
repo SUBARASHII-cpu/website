@@ -195,6 +195,13 @@ h1:hover {
     }
 }
 
+.device-info {
+    margin-top: 20px;
+    color: #ffffff;
+    font-size: 1.2em;
+    text-align: center;
+}
+
 @media (max-width: 768px) {
     h1 {
         font-size: 2em;
