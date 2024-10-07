@@ -7,6 +7,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const browserInfo = document.getElementById("browser-info");
   const fpsInfo = document.getElementById("fps-info");
   const exchangeRateInfo = document.getElementById("exchange-rate-info");
+  const deviceInfo = document.querySelector(".device-info");
+  const toggleButton = document.getElementById("toggle-menu");
+
+  // Ajoute l'événement pour basculer l'affichage du menu
+  toggleButton.addEventListener("click", function () {
+      deviceInfo.classList.toggle("hidden");
+  });
 
   clickableImage.addEventListener("click", function (e) {
       clickSound.play();
