@@ -76,10 +76,10 @@ document.addEventListener("DOMContentLoaded", function () {
           const data = await response.json();
           const rate = data.rates.USD;
           console.log('Exchange rate fetched:', rate);
-          exchangeRateInfo.textContent = `🇨🇭 CHF/USD 🇺🇸: ${rate}`;
+          exchangeRateInfo.textContent = `CHF/USD: ${rate}`;
       } catch (error) {
           console.error('Error fetching exchange rate:', error);
-          exchangeRateInfo.textContent = '🇨🇭 CHF/USD 🇺🇸: Error';
+          exchangeRateInfo.textContent = 'CHF/USD: Error';
       }
   }
 
