@@ -68,12 +68,18 @@ document.addEventListener("DOMContentLoaded", function () {
   // Function to get exchange rate information
   async function getExchangeRate() {
       try {
+          console.log('Fetching exchange rate...');
           const response = await fetch('https://api.exchangerate-api.com/v4/latest/CHF');
+          if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+          }
           const data = await response.json();
           const rate = data.rates.USD;
-          exchangeRateInfo.textContent = `CHF/USD: ${rate}`;
+          console.log('Exchange rate fetched:', rate);
+          exchangeRateInfo.textContent = `🇨🇭 CHF/USD 🇺🇸: ${rate}`;
       } catch (error) {
-          exchangeRateInfo.textContent = 'CHF/USD: Error';
+          console.error('Error fetching exchange rate:', error);
+          exchangeRateInfo.textContent = '🇨🇭 CHF/USD 🇺🇸: Error';
       }
   }
 
