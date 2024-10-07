@@ -196,15 +196,18 @@ h1:hover {
 }
 
 .device-info {
-    margin-top: 20px;
-    color: #ffffff;
-    font-size: 1.2em;
-    text-align: center;
+    position: fixed;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
     background: rgba(50, 50, 50, 0.8);
-    padding: 20px;
-    border-radius: 10px;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 8px;
     border: 2px solid rgba(80, 80, 80, 0.8);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    font-size: 1.2em;
+    text-align: center;
 }
 
 .exchange-rate {
