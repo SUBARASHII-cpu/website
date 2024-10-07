@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const ramInfo = document.getElementById("ram-info");
   const browserInfo = document.getElementById("browser-info");
   const fpsInfo = document.getElementById("fps-info");
+  const exchangeRateInfo = document.getElementById("exchange-rate-info");
 
   clickableImage.addEventListener("click", function (e) {
       clickSound.play();
@@ -64,10 +65,23 @@ document.addEventListener("DOMContentLoaded", function () {
       updateFPS();
   }
 
+  // Function to get exchange rate information
+  async function getExchangeRate() {
+      try {
+          const response = await fetch('https://api.exchangerate-api.com/v4/latest/CHF');
+          const data = await response.json();
+          const rate = data.rates.USD;
+          exchangeRateInfo.textContent = `CHF/USD: ${rate}`;
+      } catch (error) {
+          exchangeRateInfo.textContent = 'CHF/USD: Error';
+      }
+  }
+
   // Update Browser, RAM, and FPS information
   browserInfo.textContent = `Navigateur: ${getBrowserInfo()}`;
   ramInfo.textContent = `RAM: ${getRAMInfo()}`;
   getFPSInfo();
+  getExchangeRate();
 
   // Placeholder for CPU and GPU information
   cpuInfo.textContent = `CPU: Information non disponible`;
