@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Function to get Browser information
   function getBrowserInfo() {
-      return `${navigator.appName} ${navigator.appVersion}`;
+      return `${navigator.userAgent}`;
   }
 
   // Function to get RAM information
