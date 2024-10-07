@@ -45,51 +45,38 @@ document.addEventListener("DOMContentLoaded", function () {
   function getFPSInfo() {
       let lastFrameTime = performance.now();
       let frameCount = 0;
-      let fps = 0;
-
-      function updateFPS() {
+      const calculateFPS = () => {
           const now = performance.now();
           frameCount++;
           const delta = now - lastFrameTime;
 
           if (delta >= 1000) {
-              fps = frameCount;
+              const fps = (frameCount / delta) * 1000;
+              fpsInfo.innerText = `FPS: ${Math.round(fps)}`;
               frameCount = 0;
               lastFrameTime = now;
-              fpsInfo.textContent = `FPS: ${fps}`;
           }
-
-          requestAnimationFrame(updateFPS);
-      }
-
-      updateFPS();
+          requestAnimationFrame(calculateFPS);
+      };
+      requestAnimationFrame(calculateFPS);
   }
 
-  // Function to get exchange rate information
-  async function getExchangeRate() {
-      try {
-          console.log('Fetching exchange rate...');
-          const response = await fetch('https://api.exchangerate-api.com/v4/latest/CHF');
-          if (!response.ok) {
-              throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          const data = await response.json();
-          const rate = data.rates.USD;
-          console.log('Exchange rate fetched:', rate);
-          exchangeRateInfo.textContent = `CHF/USD: ${rate}`;
-      } catch (error) {
-          console.error('Error fetching exchange rate:', error);
-          exchangeRateInfo.textContent = 'CHF/USD: Error';
-      }
-  }
-
-  // Update Browser, RAM, and FPS information
-  browserInfo.textContent = `Navigateur: ${getBrowserInfo()}`;
-  ramInfo.textContent = `RAM: ${getRAMInfo()}`;
+  // Set initial values for system info
+  cpuInfo.innerText = "CPU: Information non disponible via le navigateur";
+  gpuInfo.innerText = "GPU: Information non disponible via le navigateur";
+  ramInfo.innerText = `RAM: ${getRAMInfo()}`;
+  browserInfo.innerText = `Navigateur: ${getBrowserInfo()}`;
   getFPSInfo();
-  getExchangeRate();
 
-  // Placeholder for CPU and GPU information
-  cpuInfo.textContent = `CPU: Information non disponible`;
-  gpuInfo.textContent = `GPU: Information non disponible`;
+  // Fetch exchange rate information (e.g., CHF to USD)
+  fetch("https://api.exchangerate-api.com/v4/latest/CHF")
+      .then(response => response.json())
+      .then(data => {
+          const usdRate = data.rates.USD;
+          exchangeRateInfo.innerText = `CHF/USD: ${usdRate}`;
+      })
+      .catch(error => {
+          exchangeRateInfo.innerText = "Taux de change non disponible";
+          console.error("Erreur lors de la récupération des taux de change:", error);
+      });
 });
