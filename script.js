@@ -1,6 +1,6 @@
 // Copy Discord username to clipboard
 document.getElementById('discord-copy').addEventListener('click', function() {
-  navigator.clipboard.writeText('subarashii#5555');
+  navigator.clipboard.writeText('subaru_rexie');
   alert('Discord username copied to clipboard!');
 });
 
