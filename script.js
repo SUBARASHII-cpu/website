@@ -7,20 +7,19 @@ document.addEventListener("DOMContentLoaded", function () {
   const browserInfo = document.getElementById("browser-info");
   const fpsInfo = document.getElementById("fps-info");
 
-  clickableImage.addEventListener("click", function () {
+  clickableImage.addEventListener("click", function (e) {
       clickSound.play();
-      createHeart(clickableImage);
+      createHeart(e);
   });
 
-  function createHeart(element) {
+  function createHeart(event) {
       const heart = document.createElement("div");
       heart.classList.add("heart");
       heart.innerHTML = "❤️";
       document.body.appendChild(heart);
 
-      const rect = element.getBoundingClientRect();
-      heart.style.left = `${rect.left + rect.width / 2}px`;
-      heart.style.top = `${rect.top + rect.height / 2}px`;
+      heart.style.left = `${event.clientX - 20}px`;
+      heart.style.top = `${event.clientY - 20}px`;
 
       setTimeout(() => {
           heart.remove();
