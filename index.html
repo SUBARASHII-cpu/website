@@ -1,55 +1,36 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="author" content="Subarashii" />
-        <meta name="description" content="Hey! I'm Subarashii, here you can find all my links." />
-        <link rel="icon" href="prof.jpg" type="image/jpeg" />
-        <title>SUBARASHII</title>
-        <link rel="stylesheet" href="style.css" />
-    </head>
-    <body>
-        <div class="container">
-            <h1>From Your Suba Rex</h1>
-            <img
-                id="clickable-image"
-                draggable="false"
-                src="img.jpg"
-                alt="Image not found"
-            />
-            <div class="button-container">
-                <a class="button" href="https://open.spotify.com/user/sim149?si=af8b8901a02c4409">Spotify</a>
-                <a class="button" href="https://www.tiktok.com/@subarashii555">TikTok</a>
-                <a class="button" href="https://vrchat.com/home/user/usr_087edcf1-e00c-4687-8a64-b6f577bae5cb">VRChat</a>
-                <a
-                    class="button"
-                    href="https://discord.com/"
-                    onclick="navigator.clipboard.writeText('subaru_rexie'); alert('Discord username copied: subaru_rexie'); return false;"
-                    >Discord</a
-                >
-            </div>
-        </div>
-        <div class="hidden-text">je t'aime mon Tuke <3</div>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUBARASHII</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Nerdy System Info</h1>
+        </header>
 
-        <!-- Nouveau bouton pour afficher/masquer le menu -->
-        <button id="toggle-menu" class="toggle-button">Masquer Informations Système</button>
-
-        <!-- Menu d'informations système -->
-        <div class="device-info">
-            <h2>Informations Système</h2>
-            <p id="cpu-info">CPU: Loading...</p>
-            <p id="gpu-info">GPU: Loading...</p>
-            <p id="ram-info">RAM: Loading...</p>
-            <p id="browser-info">Navigateur: Loading...</p>
-            <p id="fps-info">FPS: Loading...</p>
+        <div class="stats">
+            <h2>System Information</h2>
+            <div class="stat-item" id="system-info">Loading...</div>
         </div>
 
-        <div class="exchange-rate">
-            <p id="exchange-rate-info">CHF/USD: Loading...</p>
-        </div>
+        <img src="img.jpg" alt="Nerd Image" class="nerd-image">
 
-        <audio id="click-sound" src="music.ogg"></audio>
-        <script src="script.js"></script>
-    </body>
+        <div class="links">
+            <h2>Links</h2>
+            <a href="#" class="link-btn" id="discord-copy">Discord: Copy Username</a>
+            <a href="https://www.tiktok.com/@subarashii555" class="link-btn">TikTok</a>
+            <a href="https://open.spotify.com/user/sim149" class="link-btn">Spotify</a>
+            <a href="https://vrchat.com/home/user/usr_087edcf1-e00c-4687-8a64-b6f577bae5cb" class="link-btn">VRChat</a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
 </html>

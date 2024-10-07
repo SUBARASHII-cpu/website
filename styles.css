@@ -1,0 +1,159 @@
+/* Import the Ubuntu font */
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+:root {
+    --secondary-orange: #E95420;
+    --primary-violet: #5E2750;
+    --text-color: #FFFFFF;
+    --dark-gray: #333333;
+    --light-gray: #444444;
+    --border-color-start: #E95420;
+    --border-color-end: #5E2750;
+    --text-gradient-start: #E95420;
+    --text-gradient-end: #5E2750;
+    --hover-glow: 0 0 15px rgba(233, 84, 32, 0.5), 0 0 20px rgba(94, 39, 80, 0.5);
+    --transition-speed: 0.3s;
+    --border-thickness: 5px;
+}
+
+body {
+    font-family: 'Ubuntu', sans-serif;
+    background: linear-gradient(135deg, var(--secondary-orange) 0%, var(--primary-violet) 100%);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background-color: var(--dark-gray);
+    width: 90%;
+    max-width: 1000px;
+
+    padding: 20px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    transition: background-color var(--transition-speed), border-color var(--transition-speed);
+    border: var(--border-thickness) solid transparent; /* Transparent border */
+    border-image: linear-gradient(45deg, var(--border-color-start), var(--border-color-end)) 1; /* Gradient border */
+ /* Rounded borders */
+}
+
+/* Header and Main Content */
+header {
+    text-align: center;
+    border-bottom: 3px solid var(--secondary-orange); /* Thicker underline */
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+}
+
+h1 {
+    font-size: 2.5em;
+    background: linear-gradient(90deg, var(--text-gradient-start), var(--text-gradient-end)); /* Gradient text */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3); /* Adds subtle text shadow */
+    transition: color var(--transition-speed);
+}
+
+h2 {
+    font-size: 1.8em;
+    color: var(--secondary-orange);
+    margin-bottom: 20px;
+}
+
+/* Image styling */
+.nerd-image {
+    max-width: 100%;
+    height: auto;
+    margin: 20px 0;
+    border: 5px solid transparent; /* Transparent border */
+    border-image: linear-gradient(45deg, var(--border-color-start), var(--border-color-end)) 1; /* Gradient border for images */
+    box-shadow: var(--hover-glow);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed), border-color var(--transition-speed);
+
+}
+
+.nerd-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(233, 84, 32, 0.8), 0 0 30px rgba(94, 39, 80, 0.8);
+}
+
+/* Stats Section */
+.stats {
+    background-color: var(--light-gray);
+    padding: 20px;
+
+    margin-bottom: 30px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
+    border: var(--border-thickness) solid transparent; /* Transparent border */
+    border-image: linear-gradient(45deg, var(--border-color-start), var(--border-color-end)) 1;
+ /* Rounded borders */
+}
+
+.stats:hover {
+    background-color: #565656;
+    box-shadow: 0 0 30px rgba(233, 84, 32, 0.5), 0 0 40px rgba(94, 39, 80, 0.5);
+}
+
+.stat-item {
+    font-size: 1.4em;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    background: linear-gradient(90deg, var(--text-gradient-start), var(--text-gradient-end)); /* Gradient text in stats */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Links Section */
+.links {
+    background-color: var(--dark-gray);
+    padding: 20px;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
+    border: var(--border-thickness) solid transparent; /* Transparent border */
+    border-image: linear-gradient(45deg, var(--border-color-start), var(--border-color-end)) 1;
+ /* Rounded borders */
+}
+
+.links:hover {
+    background-color: #4A4745;
+    box-shadow: 0 0 30px rgba(233, 84, 32, 0.5), 0 0 40px rgba(94, 39, 80, 0.5);
+}
+
+.link-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    margin: 10px 5px;
+    background-color: var(--primary-violet);
+    color: var(--text-color);
+    text-decoration: none;
+
+    border: var(--border-thickness) solid transparent; /* Transparent border */
+    border-image: linear-gradient(45deg, var(--border-color-start), var(--border-color-end)) 1; /* Gradient border for buttons */
+    font-size: 1em;
+    transition: background-color var(--transition-speed), transform var(--transition-speed), box-shadow var(--transition-speed), border-color var(--transition-speed);
+}
+
+
+
+.link-btn:hover {
+    background-color: #4A1948;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(233, 84, 32, 0.5), 0 0 30px rgba(94, 39, 80, 0.5);
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    .link-btn {
+        padding: 10px 18px;
+        font-size: 0.9em;
+    }
+}

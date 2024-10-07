@@ -1,70 +1,81 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const clickableImage = document.getElementById("clickable-image");
-  const clickSound = document.getElementById("click-sound");
-  const cpuInfo = document.getElementById("cpu-info");
-  const gpuInfo = document.getElementById("gpu-info");
-  const ramInfo = document.getElementById("ram-info");
-  const browserInfo = document.getElementById("browser-info");
-  const fpsInfo = document.getElementById("fps-info");
-  const exchangeRateInfo = document.getElementById("exchange-rate-info");
+// Copy Discord username to clipboard
+document.getElementById('discord-copy').addEventListener('click', function() {
+  navigator.clipboard.writeText('subarashii#5555');
+  alert('Discord username copied to clipboard!');
+});
 
-  clickableImage.addEventListener("click", function () {
-      clickSound.play();
-  });
+// Display FPS (Frames Per Second)
+let fpsElement = document.getElementById('fps');
+let lastFrame = performance.now();
+let frameCount = 0;
+let fps = 0;
 
-  function updateFPS() {
-      let lastFrameTime = performance.now();
-      let frameCount = 0;
-
-      function update() {
-          const now = performance.now();
-          const deltaTime = now - lastFrameTime;
-          lastFrameTime = now;
-          frameCount++;
-
-          if (deltaTime >= 1000) {
-              const fps = Math.round((frameCount / deltaTime) * 1000);
-              fpsInfo.textContent = `FPS: ${fps}`;
-              frameCount = 0;
-          }
-
-          requestAnimationFrame(update);
-      }
-
-      update();
+function calculateFPS() {
+  let now = performance.now();
+  frameCount++;
+  if (now - lastFrame >= 1000) {
+      fps = frameCount;
+      frameCount = 0;
+      lastFrame = now;
   }
+  requestAnimationFrame(calculateFPS);
+}
 
-  updateFPS();
+calculateFPS();
 
-  function getDeviceInfo() {
-      cpuInfo.textContent = `CPU: ${navigator.hardwareConcurrency} cores`;
-      gpuInfo.textContent = `GPU: ${navigator.userAgent}`;
-      ramInfo.textContent = `RAM: ${navigator.deviceMemory || "N/A"} GB`;
-      browserInfo.textContent = `Navigateur: ${navigator.userAgent}`;
+// Display memory usage
+function updateMemoryUsage() {
+  if (performance.memory) {
+      let usedJSHeapSize = (performance.memory.usedJSHeapSize / (1024 * 1024)).toFixed(2);
+      return usedJSHeapSize + ' MB';
+  } else {
+      return 'Not available';
   }
+}
 
-  getDeviceInfo();
-
-  async function fetchExchangeRate() {
-      const response = await fetch("https://api.exchangerate-api.com/v4/latest/CHF");
+// Get CHF to USD conversion
+async function fetchCurrencyRate() {
+  try {
+      const response = await fetch('https://api.exchangerate-api.com/v4/latest/CHF');
       const data = await response.json();
       const rate = data.rates.USD;
-      exchangeRateInfo.textContent = `CHF/USD: ${rate}`;
+      return `1 CHF = ${rate} USD`;
+  } catch (error) {
+      return 'Error fetching rate';
   }
+}
 
-  fetchExchangeRate();
+// Get system information
+async function getSystemInfo() {
+  const userAgent = navigator.userAgent;
+  const platform = navigator.platform;
+  const screenWidth = window.screen.width;
+  const screenHeight = window.screen.height;
+  const availableMemory = navigator.deviceMemory || 'N/A';
+  const numberOfCores = navigator.hardwareConcurrency || 'N/A';
+  const browserName = navigator.appName;
+  const browserVersion = navigator.appVersion;
+  const currentTime = new Date().toLocaleTimeString();
+  const memoryUsage = updateMemoryUsage();
+  const currencyRate = await fetchCurrencyRate();
 
-  // Logique du bouton pour masquer/afficher
-  const deviceInfo = document.querySelector(".device-info");
-  const toggleButton = document.getElementById("toggle-menu");
+  return `
+      <strong>Screen Resolution:</strong> ${screenWidth} x ${screenHeight} <br><br>
+      <strong>Browser:</strong> ${browserName} ${browserVersion} <br><br>
+      <strong>Platform:</strong> ${platform} <br><br>
+      <strong>Available Memory:</strong> ${availableMemory} GB <br><br>
+      <strong>CPU Cores:</strong> ${numberOfCores} <br><br>
+      <strong>Current Time:</strong> ${currentTime} <br><br>
+      <strong>FPS:</strong> ${fps} <br><br>
+      <strong>Memory Usage:</strong> ${memoryUsage} <br><br>
+      <strong>CHF to USD:</strong> ${currencyRate}
+  `;
+}
 
-  toggleButton.addEventListener("click", function () {
-      deviceInfo.classList.toggle("hidden");
+// Display system information
+async function displaySystemInfo() {
+  document.getElementById('system-info').innerHTML = await getSystemInfo();
+}
 
-      if (deviceInfo.classList.contains("hidden")) {
-          toggleButton.textContent = "Afficher Informations Système";
-      } else {
-          toggleButton.textContent = "Masquer Informations Système";
-      }
-  });
-});
+displaySystemInfo();
+setInterval(displaySystemInfo, 1000);
